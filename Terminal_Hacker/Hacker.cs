@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class Hacker : MonoBehaviour
 {
     // Game configuration data
@@ -11,13 +8,13 @@ public class Hacker : MonoBehaviour
     string[] locals = { "Local Library", "Police Department", "NASA" };
 
     // Game state
-    int level;
     int tries = 3;
+    int level;
+    int rnd;
     string password;
     enum Screen { MainMenu, Password, Win, Lose }
     Screen currentScreen;
-
-        
+            
     // Use this for initialization
     void Start()
     {
@@ -25,7 +22,6 @@ public class Hacker : MonoBehaviour
     }
     void ShowMainMenu()
     {
-
         currentScreen = Screen.MainMenu;
         Terminal.ClearScreen();
         Terminal.WriteLine("Hello,");
@@ -33,7 +29,7 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Press 1 for the " + locals[0]);
         Terminal.WriteLine("Press 2 for the " + locals[1]);
         Terminal.WriteLine("Press 3 for the " + locals[2]);
-        Terminal.WriteLine("Type 'menu' to restart.");
+        Terminal.WriteLine("Type 'menu' to restart the game...");
         Terminal.WriteLine("Enter your selection:");
     }
     void OnUserInput(string input)
@@ -54,39 +50,38 @@ public class Hacker : MonoBehaviour
     }
     void RunMainMenu(string input)
     {
-        int rnd = Random.Range(0, 3);
-        if (input == "1")
+        bool isValidLevelNumber = (input == "1" || input == "2" || input == "3");
+        if (isValidLevelNumber)
         {
-            level = 1;
-            password = level1Passwords[rnd];
-            print(level1Passwords[rnd]); // just for testing purposes - remove anytime
-            StartGame();
-        }
-        else if (input == "2")
-        {
-            level = 2;
-            password = level2Passwords[rnd];
-            print(level2Passwords[rnd]); // just for testing purposes - remove anytime
-            StartGame();
-        }
-        else if (input == "3")
-        {
-            level = 3;
-            password = level3Passwords[rnd];
-            print(level3Passwords[rnd]); // just for testing purposes - remove anytime
+            level = int.Parse(input);
             StartGame();
         }
         else
         {
-            Terminal.WriteLine("Please choose a valid level.");
+            Terminal.WriteLine("Please, choose a valid level!");
         }
     }
     void StartGame()
     {
         currentScreen = Screen.Password;
-        Terminal.WriteLine("You choose " + locals [(level -1)]);
-        Terminal.WriteLine("Tries left: " + tries);
-        Terminal.WriteLine("Please enter your password: ");
+        Terminal.WriteLine("You are at " + locals [(level-1)] + " network.");
+        Terminal.WriteLine("Enter your password. Tries left: " + tries);
+        int rnd = Random.Range(0, 3);
+        switch (level)
+        {
+            case 1:
+                if (tries == 3) { password = level1Passwords[rnd]; }
+                break;
+            case 2:
+                if (tries == 3) { password = level2Passwords[rnd]; }
+                break;
+            case 3:
+                if (tries == 3) { password = level3Passwords[rnd]; }
+                break;
+            default:
+                Debug.LogError("Invalid number");
+                break;
+        }
     }
     void RunPassword(string input)
     {
@@ -96,11 +91,12 @@ public class Hacker : MonoBehaviour
         }
         else
         {
+            Terminal.ClearScreen();
             Terminal.WriteLine("Wrong password, try again...");
             tries = tries - 1;
             if (tries <= 0)
             {
-                Lose();
+               Lose(); 
             }
             else
             {
@@ -112,14 +108,31 @@ public class Hacker : MonoBehaviour
     {
         currentScreen = Screen.Win;
         Terminal.ClearScreen();
-        Terminal.WriteLine("Congrats you're in! You win!");
-        Terminal.WriteLine("Type menu to restart the game...");
+        Terminal.WriteLine("Congrats you're in!!! You win!");
+        Terminal.WriteLine(@"              _________
+            .-\:      /-.
+            '-|:.     |-'
+              \::.    /
+               '::. .'
+                 ) (
+                /¨¨¨\               
+");
+        Terminal.WriteLine("Type 'menu' to restart the game...");
     }
     void Lose()
     {
         currentScreen = Screen.Lose;
         Terminal.ClearScreen();
-        Terminal.WriteLine("You have been caught! You lose!!!");
-        Terminal.WriteLine("Type menu to restart the game...");
+        Terminal.WriteLine("Password lock!!! You lose!");
+        Terminal.WriteLine(@"               .-----.
+              / .---. \
+            _| |_____| |_
+          .' |_|     |_| '.
+          '._____________.'
+          '.             .'
+          '.             .'
+          '._____________.'
+");
+        Terminal.WriteLine("Type 'menu' to restart the game...");
     }
 }
