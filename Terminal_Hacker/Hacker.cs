@@ -5,8 +5,19 @@ public class Hacker : MonoBehaviour
     string[] level1Passwords = { "books", "shelf", "notes" };
     string[] level2Passwords = { "pd911", "sos911", "call911" };
     string[] level3Passwords = { "SpaceProgram", "MilkWay", "BlackHole" };
-    string[] locals = { "Local Library", "Police Department", "NASA" };
-
+    string[] locals = { @"    _    _  ___  ___  ___  ___  _ _ 
+   | |  | || . >| . \| . || . \| | |
+   | |_ | || . \|   /|   ||   /\   /
+   |___||_||___/|_\_\|_|_||_\_\ |_|
+", @"      ___  ___  _    _  ___  ___ 
+     | . \| . || |  | ||  _>| __>
+     |  _/| | || |_ | || <__| _> 
+     |_|  `___'|___||_|`___/|___>
+", @"        _  __   ___    ____   ___ 
+       / |/ /  / _ |  / __/  / _ |
+      /    /  / __ | _\ \   / __ |
+     /_/|_/  /_/ |_|/___/  /_/ |_|
+                             " };
     // Game state
     int tries = 3;
     int level;
@@ -14,7 +25,7 @@ public class Hacker : MonoBehaviour
     string password;
     enum Screen { MainMenu, Password, Win, Lose }
     Screen currentScreen;
-            
+    
     // Use this for initialization
     void Start()
     {
@@ -26,10 +37,10 @@ public class Hacker : MonoBehaviour
         Terminal.ClearScreen();
         Terminal.WriteLine("Hello,");
         Terminal.WriteLine("What would you like to hack?");
-        Terminal.WriteLine("Press 1 for the " + locals[0]);
-        Terminal.WriteLine("Press 2 for the " + locals[1]);
-        Terminal.WriteLine("Press 3 for the " + locals[2]);
-        Terminal.WriteLine("Type 'menu' to restart the game...");
+        Terminal.WriteLine("Press 1 for the Local Library");
+        Terminal.WriteLine("Press 2 for the Police Department");
+        Terminal.WriteLine("Press 3 for the Nasa");
+        Terminal.WriteLine("Type 'menu' anytime to restart.");
         Terminal.WriteLine("Enter your selection:");
     }
     void OnUserInput(string input)
@@ -54,29 +65,43 @@ public class Hacker : MonoBehaviour
         if (isValidLevelNumber)
         {
             level = int.Parse(input);
-            StartGame();
+            Terminal.ClearScreen();
+            AskForPassword();
         }
         else
         {
             Terminal.WriteLine("Please, choose a valid level!");
         }
     }
-    void StartGame()
+    void AskForPassword()
     {
+
         currentScreen = Screen.Password;
-        Terminal.WriteLine("You are at " + locals [(level-1)] + " network.");
-        Terminal.WriteLine("Enter your password. Tries left: " + tries);
+        if (tries == 3)
+        {
+            SetRandomPassword();
+            Terminal.WriteLine(locals[(level - 1)]);
+            Terminal.WriteLine("Enter password. Hint: " + password.Anagram());
+            Terminal.WriteLine("You have 3 tries.");
+        }
+        else
+        {
+        Terminal.WriteLine("Enter password. Tries left: " + tries);
+        }
+    }
+    void SetRandomPassword()
+    {
         int rnd = Random.Range(0, 3);
         switch (level)
         {
             case 1:
-                if (tries == 3) { password = level1Passwords[rnd]; }
+                { password = level1Passwords[rnd]; }
                 break;
             case 2:
-                if (tries == 3) { password = level2Passwords[rnd]; }
+                { password = level2Passwords[rnd]; }
                 break;
             case 3:
-                if (tries == 3) { password = level3Passwords[rnd]; }
+                { password = level3Passwords[rnd]; }
                 break;
             default:
                 Debug.LogError("Invalid number");
@@ -91,16 +116,15 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-            Terminal.ClearScreen();
-            Terminal.WriteLine("Wrong password, try again...");
-            tries = tries - 1;
+        tries = tries - 1;
+        Terminal.WriteLine("Wrong password!");
             if (tries <= 0)
             {
                Lose(); 
             }
             else
             {
-                StartGame();
+                AskForPassword();
             }
         }
     }
@@ -117,7 +141,7 @@ public class Hacker : MonoBehaviour
                  ) (
                 /¨¨¨\               
 ");
-        Terminal.WriteLine("Type 'menu' to restart the game...");
+        Terminal.WriteLine("Type 'menu' to restart the game.");
     }
     void Lose()
     {
@@ -133,6 +157,6 @@ public class Hacker : MonoBehaviour
           '.             .'
           '._____________.'
 ");
-        Terminal.WriteLine("Type 'menu' to restart the game...");
+        Terminal.WriteLine("Type 'menu' to restart the game.");
     }
 }
