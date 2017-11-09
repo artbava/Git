@@ -36,9 +36,9 @@ public class Hacker : MonoBehaviour
         Terminal.ClearScreen();
         Terminal.WriteLine("Hello,");
         Terminal.WriteLine("What would you like to hack?");
-        Terminal.WriteLine("Press 1 for the Local Library");
-        Terminal.WriteLine("Press 2 for the Police Department");
-        Terminal.WriteLine("Press 3 for the Nasa");
+        Terminal.WriteLine("Press 1 for Local Library");
+        Terminal.WriteLine("Press 2 for Police Department");
+        Terminal.WriteLine("Press 3 for NASA");
         Terminal.WriteLine("Type 'menu' any time to restart.");
         Terminal.WriteLine("Enter your selection:");
     }
