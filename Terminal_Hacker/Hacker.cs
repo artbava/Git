@@ -74,7 +74,6 @@ public class Hacker : MonoBehaviour
     }
     void AskForPassword()
     {
-
         currentScreen = Screen.Password;
         if (tries == 3)
         {
@@ -85,7 +84,7 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-        Terminal.WriteLine("Enter password. Tries left: " + tries);
+            Terminal.WriteLine("Enter password. Tries left: " + tries);
         }
     }
     void SetRandomPassword()
@@ -102,7 +101,7 @@ public class Hacker : MonoBehaviour
                 { password = level3Passwords[Random.Range(0, level3Passwords.Length)]; }
                 break;
             default:
-                Debug.LogError("Invalid number");
+                Debug.LogError("Invalid number!");
                 break;
         }
     }
@@ -122,7 +121,7 @@ public class Hacker : MonoBehaviour
             }
             else
             {
-                AskForPassword();
+               AskForPassword();
             }
         }
     }
