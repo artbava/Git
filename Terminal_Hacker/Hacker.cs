@@ -2,9 +2,9 @@
 public class Hacker : MonoBehaviour
 {
     // Game configuration data
-    string[] level1Passwords = { "books", "shelf", "notes" };
-    string[] level2Passwords = { "pd911", "sos911", "call911" };
-    string[] level3Passwords = { "SpaceProgram", "MilkWay", "BlackHole" };
+    string[] level1Passwords = { "books", "shelf", "notes", "novels" };
+    string[] level2Passwords = { "delegate", "emergency", "call911", "crimescene", "witness" };
+    string[] level3Passwords = { "SpaceProgram", "MilkWay", "BlackHole", "StarWars" };
     string[] locals = { @"    _    _  ___  ___  ___  ___  _ _ 
    | |  | || . >| . \| . || . \| | |
    | |_ | || . \|   /|   ||   /\   /
@@ -21,7 +21,6 @@ public class Hacker : MonoBehaviour
     // Game state
     int tries = 3;
     int level;
-    int rnd;
     string password;
     enum Screen { MainMenu, Password, Win, Lose }
     Screen currentScreen;
@@ -91,17 +90,16 @@ public class Hacker : MonoBehaviour
     }
     void SetRandomPassword()
     {
-        int rnd = Random.Range(0, 3);
         switch (level)
         {
             case 1:
-                { password = level1Passwords[rnd]; }
+                { password = level1Passwords[Random.Range(0, level1Passwords.Length)]; }
                 break;
             case 2:
-                { password = level2Passwords[rnd]; }
+                { password = level2Passwords[Random.Range(0, level2Passwords.Length)]; }
                 break;
             case 3:
-                { password = level3Passwords[rnd]; }
+                { password = level3Passwords[Random.Range(0, level3Passwords.Length)]; }
                 break;
             default:
                 Debug.LogError("Invalid number");
