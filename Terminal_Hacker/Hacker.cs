@@ -39,7 +39,7 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Press 1 for the Local Library");
         Terminal.WriteLine("Press 2 for the Police Department");
         Terminal.WriteLine("Press 3 for the Nasa");
-        Terminal.WriteLine("Type 'menu' anytime to restart.");
+        Terminal.WriteLine("Type 'menu' any time to restart.");
         Terminal.WriteLine("Enter your selection:");
     }
     void OnUserInput(string input)
@@ -79,12 +79,12 @@ public class Hacker : MonoBehaviour
         {
             SetRandomPassword();
             Terminal.WriteLine(locals[(level - 1)]);
-            Terminal.WriteLine("Enter password. Hint: " + password.Anagram());
-            Terminal.WriteLine("You have 3 tries.");
+            Terminal.WriteLine("You have 3 tries. Hint: " + password.Anagram());
+            Terminal.WriteLine("Enter password:");
         }
         else
         {
-            Terminal.WriteLine("Enter password. Tries left: " + tries);
+            Terminal.WriteLine("Enter password: ");
         }
     }
     void SetRandomPassword()
@@ -114,7 +114,7 @@ public class Hacker : MonoBehaviour
         else
         {
         tries = tries - 1;
-        Terminal.WriteLine("Wrong password!");
+        Terminal.WriteLine("Wrong password! Tries left: " + tries);
             if (tries <= 0)
             {
                Lose(); 
