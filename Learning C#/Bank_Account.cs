@@ -45,12 +45,15 @@ namespace SoloLearn
                 break;
                 case 3:
                 Console.WriteLine(b.GetBalance());
+                Console.ReadLine();
                 break;
                 case 4:
                 Console.WriteLine("Ok. Até mais!");
+                Console.ReadLine();
                 break;
                 default:
                 Console.WriteLine("Opção invalida.");
+                Console.ReadLine();
                 break;
             }                                   
         }
