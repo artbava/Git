@@ -23,23 +23,23 @@ namespace SoloLearn
         static void Main(string[] args)
         {
             BankAccount b = new BankAccount();
-            Console.WriteLine("Qual a operação que deseja realizar? - digite o número correspondente e pressione enter:");
-            Console.WriteLine("1- Deposit");
-            Console.WriteLine("2- Withdraw");
-            Console.WriteLine("3- Show Balance");
-            Console.WriteLine("4- Exit");
+            Console.WriteLine("Qual a operação que deseja realizar?);
+            Console.WriteLine("1- Depósito");
+            Console.WriteLine("2- Saque");
+            Console.WriteLine("3- Saldo");
+            Console.WriteLine("4- Sair");
             opt = Console.ReadLine();
             switch ({opt})
             {
                 case 1:
-                Console.WriteLine("Qual a quantia que será depositada?");
+                Console.WriteLine("Qual a quantia?");
                 String Dep = Console.ReadLine ();
                 n = Convert.ToDouble(Dep);
                 b.Deposit(n);
                 Console.WriteLine(b.GetBalance());
                 break;
                 case 2:
-                Console.WriteLine("Qual a quantia que será sacada?");
+                Console.WriteLine("Qual a quantia?");
                 String Wit = Console.ReadLine ();
                 n = Convert.ToDouble(Wit);
                 b.Withdraw(n);
