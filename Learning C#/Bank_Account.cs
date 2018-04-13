@@ -36,14 +36,14 @@ namespace SoloLearn
                 String Dep = Console.ReadLine ();
                 n = Convert.ToDouble(Dep);
                 b.Deposit(n);
-                 Console.WriteLine(b.GetBalance());
+                Console.WriteLine(b.GetBalance());
                 break;
                 case 2:
                 Console.WriteLine("Qual a quantia que será sacada?");
                 String Wit = Console.ReadLine ();
                 n = Convert.ToDouble(Wit);
                 b.Withdraw(n);
-                 Console.WriteLine(b.GetBalance());
+                Console.WriteLine(b.GetBalance());
                 break;
                 case 3:
                 Console.WriteLine(b.GetBalance());
