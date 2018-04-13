@@ -32,14 +32,14 @@ namespace SoloLearn
             switch ({opt})
             {
                 case 1:
-                Console.WriteLine("Qual a quantia?");
+                Console.WriteLine("Qual o valor depositado?");
                 String Dep = Console.ReadLine ();
                 n = Convert.ToDouble(Dep);
                 b.Deposit(n);
                 Console.WriteLine(b.GetBalance());
                 break;
                 case 2:
-                Console.WriteLine("Qual a quantia?");
+                Console.WriteLine("Qual o valor retirado?");
                 String Wit = Console.ReadLine ();
                 n = Convert.ToDouble(Wit);
                 b.Withdraw(n);
