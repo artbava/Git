@@ -39,7 +39,8 @@ namespace SoloLearn
                 break;
                 case 2:
                 Console.WriteLine("Qual a quantia que será sacada?");
-                n = Console.ReadLine();
+                String Withdraw = Console.ReadLine ();
+                n = Convert.ToDouble(Wit);
                 b.Withdraw(n);
                 break;
                 case 3:
