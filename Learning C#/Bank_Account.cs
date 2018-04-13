@@ -33,7 +33,8 @@ namespace SoloLearn
             {
                 case 1:
                 Console.WriteLine("Qual a quantia que será depositada?");
-                n = Console.ReadLine ();
+                String Dep = Console.ReadLine ();
+                n = Convert.ToDouble(Dep);
                 b.Deposit(n);
                 break;
                 case 2:
